@@ -102,7 +102,7 @@
         if (key === '') {
           lastIdx = o.length - 1;
           lastVal = o[o.length - 1];
-          if ($.serializeJSON.isObject(lastVal) && $.serializeJSON.isUndefined(lastVal[nextKey])) { // if nextKey is not present in the last object element
+          if ($.serializeJSON.isObject(lastVal) && ($.serializeJSON.isUndefined(lastVal[nextKey]) || (keys.length > 2 && $.serializeJSON.isObject(lastVal[nextKey])))) { // if nextKey is not present in the last object element, or it's an object itself
             key = lastIdx; // then set the new value in the same object element
           } else {
             key = lastIdx + 1; // otherwise, point to set the next index in the array
